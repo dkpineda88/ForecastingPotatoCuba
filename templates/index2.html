@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>{% block title %} {% endblock %}</title>
+
+<!--
+
+
+
+https://templatemo.com/tm-543-breezed
+
+-->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap-4.0.0-dist/css/bootstrap.min.css') }}">
+
+
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='assets/css/font-awesome.css') }}">
+
+    <link rel="stylesheet" href= "{{ url_for('static',filename='assets/css/templatemo-breezed.css') }}">
+    <link rel="stylesheet" href= "{{ url_for('static',filename='assets/css/owl-carousel.css') }}">
+    <link rel="stylesheet" href= "{{ url_for('static',filename='assets/css/lightbox.css') }}">
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    <!--<div>
+    <ul class="user-info">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        {% if current_user.is_anonymous %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li> | </li>
+            <li><a href="{{ url_for('show_signup_form') }}">Registrar</a></li>
+        {% else %}
+            <li>{{ current_user.name }}</li>
+            <li> | </li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+    </ul>
+</div>-->
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <div class="container" >
+            <div class="row">
+                <div >
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            SMPSol
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav" >
+                            <li class="scroll-to-section"><a href="../index" class="active">Home</a></li>
+                            <li class="submenu">
+                                <a href="javascript:;">Pest</a>
+                                <ul>
+                                    <li><a href="plagas_list">Gestionar plaga</a></li>
+                                <li><a href="hospedantes_list">Hospedantes</a></li>
+                                <li><a href="patogenos_list">Patógenos</a></li>
+                                    <li><a href="muestreo_list">Muestreo de campo</a></li>
+                                </ul>
+                            </li>
+<!--                            <li class="scroll-to-section"><a href="prediccion">Sistema de pronóstico</a></li>-->
+                            <li class="scroll-to-section"><a href="clasificador">Diagnostic</a></li>
+                            <li class="submenu">
+                            <a href="javascript:;">Forecasting</a>
+                            <ul>
+                                <li><a href="../prediccion">Late blight</a></li>
+                                <li><a href="../prediccion_temprano">Early blight </a></li>
+                                <li><a href="../prediccion_futura">Future scenarios</a></li>
+                            </ul>
+                        </li>
+                            <li class="scroll-to-section"><a href="#contact-us">Contact us</a></li>
+                            {% if current_user.is_authenticated  %}
+<!--
+                        <li class="scroll-to-section"> <a href="/perfil/{{ session['username']}}"> Perfil</a></li>
+-->
+                        <li class="scroll-to-section"> <a href="/logout"> {{ current_user.name}} (Salir)</a></li>
+                        {% else %}
+                        <li class="scroll-to-section"> <a href="../login_form">Login</a></li>
+<!--
+                        <li class="scroll-to-section"> <a href="../signup_form">Registro</a></li>
+-->
+                        {% endif %}
+
+                            <!--<div class="search-icon">
+                                <a href="#search"><i class="fa fa-search"></i></a>
+                            </div>-->
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    
+    <!-- ***** Search Area ***** -->
+    <div id="search">
+        <button type="button" class="close">×</button>
+        <form id="search1" action="#" method="get">
+            <fieldset>
+                <input type="search" name="q" placeholder="ESCRIBA" aria-label="Search through site content">
+            </fieldset>
+            <fieldset>
+                <button type="submit" class="main-button">Buscar</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner header-text" id="top">
+        <div class="Modern-Slider">
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+                <img src= "{{ url_for('static',filename='assets/images/plagas_papa.jpg') }}" alt="">
+                <div class="text-content">
+                    <h3></h3>
+                  <h5><b>Pest Management System in <i>Solanum tuberosum </i>L.</b></h5>
+
+                  <a href="#" class="main-stroked-button">Reed more</a>
+<!--                  <a href="#" class="main-filled-button">Get It Now</a>-->
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+                <img src= "{{ url_for('static',filename='assets/images/redes2.jpg') }}" alt="">
+                <div class="text-content">
+                  <h3>Integrando Técnicas de Inteligencia Artificial</h3>
+                  <h5>Redes Neuronales</h5>
+                  <a href="#" class="main-stroked-button">Leer más</a>
+                  <a href="#" class="main-filled-button">Tomar acción</a>
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+                <img src= "{{ url_for('static',filename='assets/images/censa.png') }}" alt="">
+                <div class="text-content">
+                  <h3>Preservar la salud animal, vegetal y humana</h3>
+                  <h5>Centro Nacional de Sanidad Agropecuaria</h5>
+                  <a href="#" class="main-stroked-button">Leer más</a>
+<!--                  <a href="#" class="main-filled-button">Get It Now</a>-->
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+        </div>
+    </div>
+    <div class="scroll-down scroll-to-section"><a href="#about"><i class="fa fa-arrow-down"></i></a></div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** About Area Starts ***** -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="left-text-content">
+                        <div class="section-heading">
+                            <h6>Acerca de nosotros</h6>
+                            <h2>Investigamos diferentes Productos Agrícolas</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="service-item">
+                                    <img src= "{{ url_for('static',filename='assets/images/papa.png')}}" alt="">
+                                    <h4>Papas</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="service-item">
+                                    <img src= "{{ url_for('static',filename='assets/images/frijol.png')}}" alt="">
+                                    <h4>Frijoles</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="service-item">
+                                    <img src="{{ url_for('static',filename='assets/images/arroz.png')}}" alt="">
+                                    <h4>Arroz</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="service-item">
+                                    <img src="{{ url_for('static',filename='assets/images/hortalizas.jpg')}}" alt="">
+                                    <h4>Hortalizas</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="#" class="main-button-icon">
+                                    Leer más <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="right-text-content">
+                        <p><a rel="nofollow noopener" href="#" target="_parent">¿Qué es el Manejo integrado de plagas (MIP)?</a><br>
+
+Es la utilización de todos los recursos necesarios, por medio de procedimientos para minimizar los peligros ocasionados por la presencia de plagas, para lo que se utilizan métodos antes de la siembra, durante y posterior al ciclo del cultivo con la finalidad de tener un buen control, a continuación se pueden mencionar algunas de ellas:
+<br>
+1.- Eliminación de malezas hospederas de plagas
+<br>
+2.- Exponer plagas a condiciones extremas de temperatura (baja o alta) utilizando plásticos o mallas combinados con sistemas de riego y aireación.
+<br>
+3.- Uso de insectos benéficos (antes, durante y posterior al ciclo)
+<br>
+4.- Uso de plaguicidas sintéticos y naturales.
+<br>
+5.- Eliminación de residuos de cosecha.
+<br>
+6.- Rotación con cultivos de diferente familia en un sistema hidroponico no causa gran diferencia, pero si ayuda a tener mas de una especie diferente en el lugar , esta asociaciòn de cultivos permite que algunas especies funcionen como repelentes naturales o como atrayentes sobre esta haciendo el control mas efciente .
+<br>
+7.- Conocimiento de las plagas más comunes en el cultivo a sembrarse y sus ciclos biológicos hacemos referencia en que epoca del año se tiene mayor población y en que parte durante su desarrollo es posible que cause daños irremediables.
+<br>
+8.- Monitoreo de acumulación de horas frío o calor, con el respectivo conocimiento de cada plaga.
+<br>
+9.- Sistemas de monitoreo, por ejemplo uso de papel color azul o amarillo con pegamneto para saber que insectos se encuentran presentes.
+<br>
+10.- Monitoreo de presencia de huevos y/o adultos de plagas
+<!--
+                      <br><br>This is a Bootstrap v4.3.1 CSS layout. Do you like it? You can feel free to <a rel="nofollow noopener" href="https://templatemo.com/contact" target="_parent">talk to us</a> if you have anything.</p>
+-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** About Area Ends ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <img src="{{ url_for('static',filename='assets/images/features-icon-1.png')}}" alt="">
+                        </div>
+                        <div class="features-content">
+                            <h4>Trabajo inicial</h4>
+                            <p>El objetivo del proyecto es </p>
+                            <a href="#" class="text-button-icon">
+                                Leer más <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <img src="{{ url_for('static',filename='assets/images/features-icon-1.png')}}" alt="">
+                        </div>
+                        <div class="features-content">
+                            <h4>Etapas del proyecto</h4>
+                            <p>El proyecto está constituido por las siguientes etapas</p>
+                            <a href="#" class="text-button-icon">
+                                Leer más <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <img src="{{ url_for('static',filename='assets/images/features-icon-1.png')}}" alt="">
+                        </div>
+                        <div class="features-content">
+                            <h4>Ejecución del proyecto</h4>
+                            <p>Los principales resultados que se pretenden alcanzar en el proyecto son:</p>
+                            <a href="#" class="text-button-icon">
+                                Leer más<i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="section-heading">
+                        <h6>Principales provincias productoras de <i>Solanum tuberosum </i>L</h6>
+                        <h2></h2>
+                    </div>
+                    <div class="subscribe-content">
+                        <p>Mayabeque</p>
+                         <p>Artemisa</p>
+                        <p>Matanzas</p>
+                        <p>Villa Clara</p>
+                        <p>Cienfuegos</p>
+                       <p>Ciego de Ávila</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+
+    <!-- ***** Projects Area Starts ***** -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="section-heading">
+                    <h6>Instituciones que participan</h6>
+
+                </div>
+                <div class="filters">
+                    <ul>
+                        <li class="active" data-filter="*">Todos</li>
+                        <li data-filter=".des">CENSA</li>
+                        <li data-filter=".dev">INISAV</li>
+                        <li data-filter=".gra">INCA</li>
+                        <li data-filter=".tsh">INIVIT</li>
+                        <li data-filter=".gra">UNICA</li>
+                        <li data-filter=".tsh">INSMET</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="filters-content">
+                    <div class="row grid">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 all dev">
+                          <div class="item">
+                            <a href="{{ url_for('static',filename='assets/images/logo_censa.jpg')}}" data-lightbox="image-1" data-title="Centro Nacional de Sanidad Agropecuaria"><img src="assets/images/logo_censa.png" alt=""></a>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 all dev">
+                          <div class="item">
+                            <a href="{{ url_for('static',filename='assets/images/inca.jpg')}}" data-lightbox="image-1" data-title="Instituto Nacional de Ciencias Agrícolas"><img src="assets/images/inca.png" alt=""></a>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 all dev">
+                          <div class="item">
+                            <a href="{{ url_for('static',filename='assets/images/inisav.jpg')}}" data-lightbox="image-1" data-title="Instituto de Investigaciones de Sanidad Vegetal"><img src="{{ url_for('static',filename='assets/images/inisav.jpg')}}" alt=""></a>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 all dev">
+                          <div class="item">
+                            <a href="{{ url_for('static',filename='assets/images/inivit.png')}}" data-lightbox="image-1" data-title="Instituto de Investigaciones de Viandas Tropicales"><img src="{{ url_for('static',filename='assets/images/inivit.png')}}" alt=""></a>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 all dev">
+                          <div class="item">
+                            <a href="{{ url_for('static',filename='assets/images/unica.jpg')}}" data-lightbox="image-1" data-title="Universidad de Ciego de Ávila"><img src="{{ url_for('static',filename='assets/images/unica.png')}}" alt=""></a>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 all dev">
+                          <div class="item">
+                            <a href="{{ url_for('static',filename='assets/images/insmet.jpg')}}" data-lightbox="image-1" data-title="Instituto de Meteorología"><img src="{{ url_for('static',filename='assets/images/insmet.png')}}" alt=""></a>
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+    <!-- ***** Projects Area Ends ***** -->
+
+    <!-- ***** Testimonials Starts ***** -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h6>Equipo de proyecto</h6>
+                        <h2>Talentosos miembros del proyecto</h2>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item author-item">
+                            <div class="member-thumb">
+                                <img src="{{ url_for('static',filename='assets/images/member-item-04.jpg')}}" alt="">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>.01 Ileana Miranda Cabrera</h4>
+                            <span>Líder del proyecto</span>
+                        </div>
+                        <div class="item author-item">
+                            <div class="member-thumb">
+                                <img src="{{ url_for('static',filename='assets/images/member-item-03.jpg')}}" alt="">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="https://www.facebook.com/dkpineda88/"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="https://twitter.com/dkpineda88"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="https://www.linkedin.com/in/dunia-pineda-medina-b12b59131/"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>.02 Dunia Pineda Medina</h4>
+                            <span>Especialista en Informática</span>
+                        </div>
+                        <div class="item author-item">
+                            <div class="member-thumb">
+                                <img src="{{ url_for('static',filename='assets/images/member-item-02.jpg')}}" alt="">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>.03 Madelaine Quiñones Pantoja</h4>
+                            <span>Viróloga</span>
+                        </div>
+                        <div class="item author-item">
+                            <div class="member-thumb">
+                                <img src="{{ url_for('static',filename='assets/images/member-item-05.jpg')}}" alt="">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>.04 Rolisbel Alfonso de la Cruz</h4>
+                            <span>Micólogo</span>
+                        </div>
+                        <div class="item author-item">
+                            <div class="member-thumb">
+                                <img src="{{ url_for('static',filename='assets/images/member-item-03.jpg')}}" alt="">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>.05 Lázaro Cuellar Yanes</h4>
+                            <span>Entomólogo</span>
+                        </div>
+                        
+                        <div class="item author-item">
+                            <div class="member-thumb">
+                                <img src="{{ url_for('static',filename='assets/images/member-item-04.jpg')}}" alt="">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>.06 Odaylin Plasencia Márquez</h4>
+                            <span>Bacterióloga</span>
+                        </div>
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Testimonials Ends ***** -->
+    
+    <!-- ***** Contact Us Area Starts ***** -->
+
+    <section class="section" id="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="left-text-content">
+                        <div class="section-heading">
+                            <h6>Contáctenos</h6>
+                            <h2>Siéntase libre para contactar con nosotros!</h2>
+                        </div>
+                        <ul class="contact-info">
+                            <li><img src="{{ url_for('static',filename='assets/images/contact-info-01.png')}}" alt="">47849144</li>
+                            <li><img src="{{ url_for('static',filename='assets/images/contact-info-02.png')}}" alt="">ileanam@censa.edu.cu</li>
+                            <li><img src="{{ url_for('static',filename='assets/images/contact-info-03.png')}}" alt="">www.censa.edu.cu</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-xs-12">
+                    <div class="contact-form">
+                        <form id="contact" action="" method="get">
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Nombre *" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="phone" type="text" id="phone" placeholder="Teléfono" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="email" id="email" placeholder="Correo electrónico *" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="subject" type="text" id="subject" placeholder="Asunto">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="message" rows="6" id="message" placeholder="Mensaje" required=""></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button-icon">Enviar <i class="fa fa-arrow-right"></i></button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="left-text-content">
+                        <p>Copyright &copy; 2022 CENSA.
+                        
+<!--                        - Design: <a rel="nofollow noopener" href="https://templatemo.com">TemplateMo</a>--></p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="right-text-content">
+                            <ul class="social-icons">
+                                <li><p>Síganos</p></li>
+                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-facebook"></i></a></li>
+                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-twitter"></i></a></li>
+                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-dribbble"></i></a></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static',filename='assets/js/jquery-2.1.0.min.js')}}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static',filename='assets/js/popper.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/bootstrap.min.js')}}"></script>
+
+    <!-- Plugins -->
+    <script src="{{ url_for('static',filename='assets/js/owl-carousel.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/scrollreveal.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/waypoints.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/jquery.counterup.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/imgfix.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/slick.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/lightbox.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/isotope.js')}}"></script>
+    
+    <!-- Global Init -->
+    <script src="{{ url_for('static',filename='assets/js/custom.js')}}"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+  </body>
+</html>

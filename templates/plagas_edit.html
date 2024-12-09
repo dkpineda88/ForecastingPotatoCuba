@@ -1,0 +1,122 @@
+{% extends "index_base.html" %}
+{% block title1 %}GESTIONAR PLAGAS EN <i>Solanum tuberosum </i>L{% endblock %}
+{% block content %}
+
+<section class="section" id="plagas_edit">
+    <div class="col-lg-8 col-md-8 col-xs-12">
+        <div>
+
+            <div>
+                <form id="form_plagas_edit" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <div>
+                        <div >
+                            <!-- <table>
+                                 <tr>
+                                     <td>-->
+                            <div class="row" align="rigth">
+
+                            <div class="form-group" >
+                                <div>
+                            <img src="/static/upload/{{values_pl.image}}" style="border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 150px;"/>
+                               </div>
+                                <div class="col">{{form.photo}}</div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        {{form.nombre.label() }}{{form.nombre(class="form-control",value=values_pl.nombre)}}
+                                        {% for error in form.nombre.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col">                      <!--</td><td>-->
+                                    <div class="form-group">
+                                        {{form.nombre_cientifico.label()
+                                        }}{{form.nombre_cientifico(class="form-control",value=values_pl.nombre_cientifico)}}
+
+                                        {% for error in form.nombre_cientifico.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  </td>
+                                      </tr>
+                                  <tr><td>-->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        {{form.hospedante_id.label() }}{{form.hospedante_id(class="form-control",value=values_pl.hospedante_id)}}
+                                        <a href="{{url_for('hospedanteslist')}}" class="fa fa-edit"
+                                           title="Insertar hospedante"></a>
+
+                                        <!-- <label >Hospedante</label>
+                                         <select class="form-control"  name="hospedante_id" ></select>-->
+                                        {% for error in form.hospedante_id.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- </td><td>-->
+                                <div class="col">
+                                    <div class="form-group">
+                                        {{form.patogeno_id.label() }}{{form.patogeno_id(class="form-control",value=values_pl.patogeno_id)}}
+                                        {% for error in form.patogeno_id.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                        <a href="{{url_for('patogenoslist')}}" class="fa fa-edit"
+                                           title="Insertar patógeno"></a>
+                                    </div>
+                                </div>
+                            </div><!--
+                                </td></tr>
+          <tr><td>-->
+                            <div class="form-group">
+                                {{form.sintomatologia.label() }}{{form.sintomatologia(rows="20",cols="30",class="form-control",value=values_pl.sintomatologia)}}
+
+                                {% for error in form.sintomatologia.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            <!--   </td><td>-->
+                            <div class="form-group">
+                                {{form.epidemiologia.label() }}{{form.epidemiologia(rows="20",cols="30",class="form-control",value=values_pl.epidemiologia)}}
+
+                                {% for error in form.epidemiologia.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div><!--</td></tr>
+         <tr><td>-->
+                            <div class="form-group">
+                                {{form.control.label() }}{{form.control(rows="20",cols="30",class="form-control",value=values_pl.control)}}
+
+                                {% for error in form.control.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div><!--</td><td>-->
+                            <div class="form-group">
+                                {{form.otros_datos.label() }}{{form.otros_datos(rows="20",cols="30",class="form-control",value=values_pl.otros_datos)}}
+
+                                {% for error in form.otros_datos.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div><!--</td></tr>
+                                    <tr><td colspan="2">-->
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary btn-lg btn-block">Aceptar
+                                </button>
+
+                                <!--            {{ form.submit() }}-->
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

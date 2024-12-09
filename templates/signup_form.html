@@ -1,0 +1,80 @@
+{% extends "index_base.html" %}
+{% block title1 %}Formulario de Registro de usuarios{% endblock %}
+{% block content %}
+    {% if error %}
+        <p style="color: red;"><strong>Error:</strong> {{ error }}
+    {% endif %}
+
+<section class="section" id="sregistro">
+    <div class="col-lg-8 col-md-8 col-xs-12">
+                    <div class="contact-form">
+
+            <div class="row">
+                <form id="form_registro" action="" method="post" novalidate>
+                  {{ form.hidden_tag() }}
+                          <div class="row">
+                            <div class="col-lg-12">
+                                        <div>
+            {{ form.name.label }}
+            {{ form.name(size=64) }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.email.label }}
+            {{ form.email }}<br>
+            {% for error in form.email.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label }}
+            {{ form.password }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+                                <div>
+                {{ form.password2.label }}
+                {{ form.password2 }}<br>
+                {% for error in form.password2.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+                            <!--  <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Nombre *" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <input name="email" type="email" id="email" placeholder="Email *" required="">
+                              </fieldset>
+                            </div>
+                              <div class="col-lg-12">
+                              <fieldset>
+                                <input name="password" type="password" id="password" placeholder="Contraseña *" required="">
+                              </fieldset>
+                            </div>
+                              <div class="col-lg-12">
+                              <fieldset>
+                                <input name="password2" type="password" id="password2" placeholder="Confirme contraseña *" required="">
+                              </fieldset>
+                            </div>
+
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button-icon">Regístrate<i class="fa fa-arrow-right"></i></button>
+                              </fieldset>
+                            </div>-->
+                          </div>
+                          </div>
+                        </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

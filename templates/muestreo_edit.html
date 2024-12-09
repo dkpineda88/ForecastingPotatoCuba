@@ -1,0 +1,191 @@
+
+{% extends "index_base.html" %}
+{% block title1 %}MUESTREO DE CAMPO{% endblock %}
+{% block content %}
+
+<section class="section" id="muestreo">
+    <div class="col-lg-8 col-md-8 col-xs-12">
+        <div>
+
+            <div>
+                <form id="form_muestreo_edit" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ form.csrf_token}}
+                    <div>
+
+                        <!-- <table>
+                             <tr>
+                                 <td>-->
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{form.nombre.label() }}{{form.nombre(class="form-control",value=values_pl.nombre)}}
+                                    {% for error in form.nombre.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col">                      <!--</td><td>-->
+                                <div class="form-group">
+                                    {{form.fecha.label()
+                                    }}{{form.fecha(class="form-control",value=values_pl.fecha)}}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">Provincia:</label>
+                                    {{form.provincia_id(class="form-control",value=values_pl.provincia_id)}}
+                                    <!--                                        <a href="{{url_for('plagaslist')}}" class="fa fa-edit"-->
+                                    <!--                                           title="Insertar plaga"></a>-->
+
+                                    <!-- <label >Hospedante</label>
+                                     <select class="form-control"  name="hospedante_id" ></select>-->
+                                    {% for error in form.provincia_id.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col">                      <!--</td><td>-->
+                                <div class="form-group">
+                                    <label for="email">Municipio:</label>
+                                    {{form.municipio_id(class="form-control",value=values_pl.municipio_id)}}
+                                    <!--                                        <a href="{{url_for('plagaslist')}}" class="fa fa-edit"-->
+                                    <!--                                           title="Insertar plaga"></a>-->
+
+                                    <!-- <label >Hospedante</label>
+                                     <select class="form-control"  name="hospedante_id" ></select>-->
+                                    {% for error in form.municipio_id.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{form.latitud.label() }}{{form.latitud(class="form-control",value=values_pl.latitud)}}
+                                    {% for error in form.latitud.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col">                      <!--</td><td>-->
+                                <div class="form-group">
+                                    {{form.longitud.label()
+                                    }}{{form.longitud(class="form-control",value=values_pl.longitud)}}
+                                    {% for error in form.longitud.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  </td>
+                                  </tr>
+                              <tr><td>-->
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group" >
+<!--                                     {{form.plsi.label() }}
+{{form.plsi(class="form-control")}}-->
+                                    <label for="email">Encontró plaga?:</label>
+                                    <input type="checkbox" name="plsi" id="plsi" />
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                <div class="form-group" id="plaga_div" style="display:none">
+                                    {{form.plaga_id.label() }}
+                                    <div class="select is-rounded">
+                                    {{form.plaga_id(class="form-control",value=values_pl.plaga_id)}}
+                                    <a href="{{url_for('plagaslist')}}" class="fa fa-edit"
+                                       title="Insertar plaga"></a>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </td><td>-->
+
+                        <!--
+                            </td></tr>
+
+      <tr><td>-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{form.observacion.label()
+                                    }}{{form.observacion(rows="20",cols="30",class="form-control",value=values_pl.observacion)}}
+
+                                    {% for error in form.observacion.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!--   </td><td>-->
+
+
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary btn-lg btn-block">Aceptar
+                                    </button>
+
+                                    <!--            {{ form.submit() }}-->
+                                </div>
+
+                    </div>
+
+
+                </form>
+                <script>
+
+
+provincia_select = document.getElementById('provincia_id');
+municipio_select = document.getElementById('municipio_id');
+plaga_select = document.getElementById('plsi');
+plaga_div = document.getElementById('plaga_div');
+plaga_id = document.getElementById('plaga_id');
+
+provincia_select.onchange = function(){
+ provincia = provincia_select.value;
+ fetch('/muestreo/new/municipio/' + provincia).then(function(response){
+   response.json().then(function(data) {
+   optionHTML = '';
+   for (municipio of data.municipioprovincia) {
+    optionHTML += '<option value="' + municipio.id +'">' + municipio.nombre + '</option>'
+   }
+   municipio_select.innerHTML = optionHTML;
+  });
+ });
+}
+
+plaga_select.onclick = function(){
+ plaga = plaga_select.checked;
+ if (plaga){
+plaga_div.style.display ='block';
+}
+else
+{
+plaga_div.style.display ='none';
+plaga_id.value=null
+
+}
+
+}
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

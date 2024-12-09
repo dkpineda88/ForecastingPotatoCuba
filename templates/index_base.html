@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet">
+
+    <title>{% block title %} {% endblock %}</title>
+
+    <!--
+
+    Breezed Template
+
+    https://templatemo.com/tm-543-breezed
+
+    -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='bootstrap-4.0.0-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/jquery.dataTables.min.css') }}">
+
+    <script type="text/javascript"
+            src="{{ url_for('static',filename='bootstrap-4.0.0-dist/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/templatemo-breezed.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/owl-carousel.css') }}">
+    <script rel="stylesheet" type="text/javascript"
+            src="{{ url_for('static',filename='js/jquery-3.6.0.min.js') }}"></script>
+
+
+    <script rel="stylesheet" type="text/javascript"
+            src="{{ url_for('static',filename='assets/js/jquery.dataTables.min.js') }}"></script>
+    <script rel="stylesheet" type="text/javascript"
+            src="{{ url_for('static',filename='assets/js/dataTables.bootstrap4.min.js') }}"></script>
+</head>
+<body style="margin:0;padding:0">
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        #SMPSOL
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="../index" class="active">Inicio</a></li>
+                        <li class="submenu">
+                            <a href="javascript:;">Plagas</a>
+                            <ul>
+                                <li><a href="plagas_list">Gestionar plaga</a></li>
+                                <li><a href="hospedantes_list">Hospedantes</a></li>
+                                <li><a href="patogenos_list">Patógenos</a></li>
+                                <li><a href="muestreo_list">Muestreo de campo</a></li>
+                            </ul>
+                        </li>
+                        <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                             <li>
+                                 <a href="../plagas_list">Gestionar plaga</a>
+                                 <ul class="dropdown-menu dropdown-submenu">
+                                     <li><a href="../hospedantes_list">     Hospedantes</a></li>
+                                     <li><a href="../patogenos_list">      Patógenos</a></li>
+                                 </ul>
+                             </li>
+
+                             <li><a href="../muestreo_list">Muestreo de campo</a></li>
+                         </ul>-->
+                        </li>
+
+                        <li class="scroll-to-section"><a href="../clasificador">Diagnóstico</a></li>
+                        <li class="submenu">
+                            <a href="javascript:;">Pronóstico</a>
+                            <ul>
+                                <li><a href="../prediccion">Tizón tardío</a></li>
+                                <li><a href="../prediccion_temprano">Tizón temprano</a></li>
+                                <li><a href="../prediccion_futura">Escenarios futuros</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#contact-us">Contáctenos</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li class="scroll-to-section"> <a href="/perfil/{{ session['username']}}"> Perfil</a></li>
+                        <li class="scroll-to-section"> <a href="/logout"> {{ current_user.name }} (Salir)</a></li>
+                        {% else %}
+                        <li class="scroll-to-section"> <a href="../login_form">Iniciar sesión</a></li>
+                        {% endif %}
+                        <!--<div class="search-icon">
+                            <a href="#search"><i class="fa fa-search"></i></a>
+                        </div>-->
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Search Area ***** -->
+<div id="search">
+    <button type="button" class="close">×</button>
+    <form id="contact" action="#" method="get">
+        <fieldset>
+            <input type="search" name="q" placeholder="ESCRIBA" aria-label="Search through site content">
+        </fieldset>
+        <fieldset>
+            <button type="submit" class="main-button">Buscar</button>
+        </fieldset>
+    </form>
+</div>
+<div class="main-banner header-text" id="top">
+    <div>
+        <!-- Item -->
+        <div class="item">
+            <div class="img-fill">
+                <img src="{{ url_for('static',filename='assets/images/banner.jpg') }}" alt="">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="text-content">
+            <h5>&nbsp;{% block title1 %}{% endblock %}</h5>
+            <div class="container-fluid mt-3">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-primary" role="alert">
+                    <span>{{ message }}</span>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block contenido %}
+                {% endblock %}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<br><br>
+<section class="section">
+
+
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+    <script>
+       $(document).ready( function () {
+    $('#list_pl').DataTable( {
+        "order": [[ 3, "desc" ]],
+        "pagingType": "full_numbers",
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    } );
+    $('#example').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+         "aLengthMenu":[[3,5,10,25,-1],[3,5,10,25,"All"]],
+         "iDisplayLength":3
+        }
+    } );
+    $('#examplepat').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+         "aLengthMenu":[[3,5,10,25,-1],[3,5,10,25,"All"]],
+         "iDisplayLength":3
+        }
+    } );
+} );
+
+
+    </script>
+
+</section>
+
+
+</body>
+</html>

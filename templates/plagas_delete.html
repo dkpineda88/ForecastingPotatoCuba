@@ -1,0 +1,20 @@
+{% extends "index_base.html" %}
+{% block title1 %}GESTIONAR PLAGAS AGRÍCOLAS{% endblock %}
+{% block contenido %}
+<div class="container">
+  <div class="row">
+
+    <p>¿Estás seguro de borrar la plaga: {{pl.nombre}}</p>
+    <br/><br/>
+      <form class="form-horizontal"  method="post">
+        <div class="form-group">
+          {{ form.csrf_token }}
+          {{form.si(class="btn btn-primary") }} {{form.no(class="btn btn-primary")}}<br/><br/>
+        </div>
+          
+    </form>
+  </div>
+</div>
+ 	
+  
+{% endblock %}

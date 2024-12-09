@@ -1,0 +1,75 @@
+{% extends "index_base.html" %}
+{% block title1 %}PLAGAS EN <i>Solanum tuberosum </i>L{% endblock %}
+{% block content %}
+
+
+<section class="section" id="plaga_pdf">
+
+    <div class="container">
+         <th><!--<form action="pdfplagas" class="form-horizontal" method="post" enctype="multipart/form-data">
+              <p><a class="fa fa-search" aria-hidden="true" href="{{url_for('generar_pdf')}}" >(PDF)</a></p>-->
+
+
+        {% for pat in patogenos %}
+
+        <div align="center"><b> CAUSADAS POR: {{pat.nombre}}</b></div>
+        {% for pl in plagas %}
+        {% if pl.patogeno_id==pat.id%}
+        <table border="0">
+            <tr>
+                <td colspan="2">
+
+                    <img src="/static/upload/{{pl.image}}"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><p><b>Nombre: </b>
+                    {{pl.nombre}}</p></td>
+            </tr>
+            <tr>
+                <td colspan="2"><p><b>Nombre científico: </b>{{pl.nombre_cientifico}}</p></td>
+            </tr>
+
+            <tr>
+            </tr>
+            <tr>
+                <td><p><b>Sintomatología: </b></td>
+            </tr>
+            <tr>
+                <td><p style="text-align: justify;">{{pl.sintomatologia}}</p></td>
+            </tr>
+            <tr>
+                <td><p><b>Epidemiología y Ciclo: </b></p></td>
+            </tr>
+            <tr>
+                <td><p style="text-align: justify;">{{pl.epidemiologia}}</p></td>
+            </tr>
+            <tr>
+                <td><p><b>Control: </b></td>
+            </tr>
+            <tr>
+                <td><p style="text-align: justify;">{{pl.control}}</p></td>
+            </tr>
+            {% if pl.otros_datos!=""%}
+            <tr>
+                <td><p><b>Otros datos:</b></p></td>
+            </tr>
+            <tr>
+                <td><p style="text-align: justify;">{{pl.otros_datos}}</p></td>
+            </tr>
+
+
+            {% endif%}
+
+
+        </table>
+        <br/> <br/>
+        {% endif%}
+        {% endfor %}
+        {% endfor %}
+<!--             </form>-->
+    </div>
+    <br/>
+
+</section>
+{% endblock %}

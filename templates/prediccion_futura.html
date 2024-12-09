@@ -1,0 +1,102 @@
+{% extends "index_base.html" %}
+<div>{% block title1 %}   Future weather scenarios for growing season{% endblock %}</div>
+{% block content %}
+<body style="margin:0;padding:0">
+
+<section class="section" id="pag_prediccion">
+
+     <form id="form_muestreo" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ form.csrf_token}}
+                    <div>
+                         <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{form.plaga_id.label() }}{{form.plaga_id(class="form-control")}}
+                                    {% for error in form.plaga_id.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col">
+                             <div class="form-group">
+                                    <label >Province</label>
+                                    {{form.provincia_id(class="form-control")}}
+                                    <!--                                        <a href="{{url_for('plagaslist')}}" class="fa fa-edit"-->
+                                    <!--                                           title="Insertar plaga"></a>-->
+
+                                    <!-- <label >Hospedante</label>
+                                     <select class="form-control"  name="hospedante_id" ></select>-->
+                                    {% for error in form.provincia_id.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                    {% endfor %}
+                             </div> </div>
+                              <div class="col">                      <!--</td><td>-->
+                                <div class="form-group">
+                                    {{form.year.label()
+                                    }}{{form.year(class="form-control")}}
+
+                                </div>
+                            </div>
+                             <div class="col">
+
+                             <div class="form-group">
+                                    <label ></label>
+                                    <button type="submit" class="form-control btn btn-primary btn-lg btn-block">Search
+                                    </button>
+
+                                    <!--            {{ form.submit() }}-->
+                                </div>
+
+                        </div>
+                        </div></div>
+          </form>
+
+
+
+
+
+
+      <div  id="pred">
+         <!-- {% if input_enero %}
+          <img
+          class="img-fluid"
+          src="{{ url_for('static', filename='upload/plot_enero.png') }}"
+        />
+           {% endif %}
+           {% if input_febrero %}
+          <img
+          class="img-fluid"
+          src="{{ url_for('static', filename='upload/plot_febrero.png') }}"
+        />
+
+           {% endif %}-->
+           {% if input_marzo %}
+          <img
+          class="img-fluid"
+          src="{{ url_for('static', filename='upload/plot_marzo.png') }}"
+        />
+           {% endif %}
+
+          {% if input_pday %}
+          <img
+          class="img-fluid"
+          src="{{ url_for('static', filename='upload/plot_pday.png') }}"/>
+
+          {% endif %}
+
+
+      <!-- <img src={{out}}/>
+
+      {{out}}-->
+
+      </div>
+
+
+
+
+</section>
+</body>
+
+
+{% endblock %}
